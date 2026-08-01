@@ -1,117 +1,243 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For Maryam ❤️</title>
+<title>For Maryam</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+
 *{
+margin:0;
+padding:0;
 box-sizing:border-box;
 }
 
+
 body{
-margin:0;
+
 height:100vh;
 overflow:hidden;
+
 background:
-radial-gradient(circle at top,#3a2a55,#080810);
-font-family:tahoma;
-color:white;
+radial-gradient(circle at center,#fff7e8,#d8c0a0);
+
 display:flex;
 justify-content:center;
 align-items:center;
+
+font-family:'Cormorant Garamond',serif;
+
 }
 
 
-.stars{
+/* نور محیط */
+
+body:before{
+
+content:"";
+
 position:absolute;
-width:100%;
-height:100%;
-background-image:
-radial-gradient(white 1px,transparent 1px);
-background-size:40px 40px;
-opacity:.4;
-animation:move 20s linear infinite;
-}
+width:600px;
+height:600px;
 
-@keyframes move{
-from{transform:translateY(0)}
-to{transform:translateY(40px)}
+background:rgba(255,255,255,.45);
+
+filter:blur(100px);
+
 }
 
 
-.container{
+/* صحنه */
+
+.scene{
+
+position:relative;
 text-align:center;
-z-index:2;
+
 }
 
+
+/* پاکت */
 
 .envelope{
-width:280px;
-height:180px;
-background:#c9a45c;
-border-radius:10px;
+
 position:relative;
-margin:auto;
-box-shadow:0 20px 50px black;
+
+width:360px;
+height:240px;
+
+background:
+linear-gradient(145deg,#f7e7cc,#e6c89c);
+
+border-radius:8px;
+
+box-shadow:
+
+0 40px 80px rgba(70,40,10,.35),
+inset 0 0 30px rgba(255,255,255,.5);
+
+transform-style:preserve-3d;
+
+animation:float 4s infinite ease-in-out;
+
 }
 
 
-.envelope:before{
-content:"";
+@keyframes float{
+
+50%{
+transform:translateY(-12px);
+}
+
+}
+
+
+
+/* در پاکت */
+
+.flap{
+
 position:absolute;
+
 top:0;
 left:0;
-border-left:140px solid transparent;
-border-right:140px solid transparent;
-border-top:90px solid #e0bf7b;
+
+width:0;
+height:0;
+
+border-left:180px solid transparent;
+border-right:180px solid transparent;
+
+border-top:120px solid #f1d8b4;
+
+transform-origin:top;
+
+transition:1s;
+
+z-index:3;
+
 }
 
+
+/* کاغذ داخل */
+
+.letter{
+
+position:absolute;
+
+width:300px;
+height:180px;
+
+background:white;
+
+left:30px;
+top:40px;
+
+border-radius:5px;
+
+box-shadow:0 10px 30px #0002;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:40px;
+
+font-family:'Great Vibes',cursive;
+
+color:#9b1d20;
+
+transition:1s;
+
+}
+
+
+
+/* مهر */
 
 .seal{
+
 position:absolute;
-top:70px;
-left:115px;
-width:50px;
-height:50px;
-background:#9b1c31;
+
+z-index:5;
+
+left:50%;
+top:50%;
+
+transform:translate(-50%,-50%);
+
+width:95px;
+height:95px;
+
 border-radius:50%;
+
+background:
+
+radial-gradient(circle,#c52b35,#7b1118);
+
+box-shadow:
+
+0 10px 20px #0005,
+inset 0 0 15px #ff7777;
+
 display:flex;
+
 align-items:center;
 justify-content:center;
-font-size:22px;
-}
 
+color:#e8c879;
 
-h1{
-font-size:35px;
-margin-bottom:40px;
-}
+font-family:'Great Vibes',cursive;
 
+font-size:34px;
 
-button{
-margin-top:40px;
-padding:15px 40px;
-border:none;
-border-radius:50px;
-font-size:18px;
-background:#d4af37;
-color:white;
 cursor:pointer;
-box-shadow:0 0 20px #d4af37;
+
+transition:.5s;
+
 }
 
 
-button:hover{
-transform:scale(1.05);
+.seal:hover{
+
+transform:translate(-50%,-50%) scale(1.08);
+
 }
 
 
-.hidden{
-display:none;
+/* باز شدن */
+
+.open .flap{
+
+transform:rotateX(180deg);
+
 }
+
+
+.open .seal{
+
+opacity:0;
+
+transform:
+translate(-50%,-50%) scale(.2);
+
+}
+
+
+.open .letter{
+
+transform:translateY(-150px);
+
+}
+
+
 
 </style>
 
@@ -121,26 +247,26 @@ display:none;
 <body>
 
 
-<div class="stars"></div>
+<div class="scene">
 
 
-<div class="container">
-
-<h1>برای مریم عزیزم ❤️</h1>
+<div class="envelope" id="env">
 
 
-<div class="envelope">
-
-<div class="seal">
-❤️
-</div>
-
+<div class="letter">
+Maryam
 </div>
 
 
-<button onclick="openCard()">
-باز کردن کارت
-</button>
+<div class="flap"></div>
+
+
+<div class="seal" onclick="openCard()">
+Maryam
+</div>
+
+
+</div>
 
 
 </div>
@@ -151,17 +277,34 @@ display:none;
 
 function openCard(){
 
-document.querySelector(".container").innerHTML=`
+document
+.getElementById("env")
+.classList.add("open");
 
-<h1>
+
+setTimeout(()=>{
+
+document.body.innerHTML=`
+
+<div style="
+text-align:center;
+font-family:'Cormorant Garamond';
+font-size:40px;
+color:#8b1c1c;
+">
+
 مریم عزیزم...
-</h1>
 
-<p style="font-size:22px">
-یک داستان زیبا قرار است شروع شود...
-</p>
+<br><br>
+
+یک داستان زیبا آغاز می‌شود...
+
+</div>
 
 `;
+
+},2000);
+
 
 }
 
